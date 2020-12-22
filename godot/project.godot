@@ -16,7 +16,31 @@ _global_script_class_icons={
 [application]
 
 config/name="Project-J"
+run/main_scene="res://world/world.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://scripts/globals.gd"
+
+[input]
+
+accelerate={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+shoot={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[physics]
+
+3d/default_gravity=0.0
+3d/default_linear_damp=0.0
+3d/default_angular_damp=0.0
 
 [rendering]
 

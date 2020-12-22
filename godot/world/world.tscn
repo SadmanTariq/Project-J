@@ -54,6 +54,8 @@ pixel_size = 0.0936
 texture = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+gravity_scale = 0.0
+thrust = 150.0
 
 [node name="RemoteTransform" type="RemoteTransform" parent="Player"]
 remote_path = NodePath("../../Camera")

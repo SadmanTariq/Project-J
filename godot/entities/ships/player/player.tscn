@@ -6,12 +6,16 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 4.53651, 3.02262, 4.28628 )
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="RigidBody"]
+linear_damp = 0.0
 script = ExtResource( 2 )
 max_rotation_speed = 360
 rotation_factor = 0.7
 
 [node name="Ship" parent="." instance=ExtResource( 1 )]
+
+[node name="RemoteTransform" type="RemoteTransform" parent="Ship"]
+remote_path = NodePath("../../CollisionShape")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
