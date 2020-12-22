@@ -10,7 +10,7 @@ func _physics_process(delta):
 	
 
 func _rotate(delta):
-	var forward: Vector3 = -$Ship.transform.basis.z
+	var forward: Vector3 = -transform.basis.z
 	
 	var angle_to_mouse = forward.angle_to(_get_rotate_target())
 	angle_to_mouse *= sign(forward.cross(_get_rotate_target()).y)
@@ -20,8 +20,8 @@ func _rotate(delta):
 	
 	var rotate_angle = amount * deg2rad(max_rotation_speed) * delta
 	
-	$Ship.rotate_y(rotate_angle)
-	$Ship.rotation.z = amount * deg2rad(max_bank_angle)
+	rotate_y(rotate_angle)
+	rotation.z = amount * deg2rad(max_bank_angle)
 
 func _get_rotate_target() -> Vector3:
 	var mousepos = get_viewport().get_mouse_position()
