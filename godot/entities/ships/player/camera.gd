@@ -16,4 +16,4 @@ func _input(event):
 
 func _set_zoom_level(new_zoom):
 	zoom_level = clamp(new_zoom, 0, 1)
-	$Camera.translation.z = min_distance + (max_distance - min_distance) * zoom_level
+	$Camera.translation.z = max_distance - (max_distance - min_distance) * zoom_level
