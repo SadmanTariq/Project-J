@@ -6,6 +6,9 @@ export(float, 0, 3) var rotation_factor: float
 export var thrust = 150.0
 #export var damping = 2
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+#	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 func _physics_process(delta):
 #	translation.y = 0
@@ -25,21 +28,26 @@ func _accelerate(delta):
 func _rotate(delta):
 	var forward: Vector3 = -$Ship.transform.basis.z
 	
-	var angle_to_mouse = forward.angle_to(_get_rotate_target())
-	angle_to_mouse *= sign(forward.cross(_get_rotate_target()).y)
+	var rotate_target = _get_rotate_target()
+	
+	var angle_to_mouse = forward.angle_to(rotate_target)
+	angle_to_mouse *= sign(forward.cross(rotate_target).y)
 	
 	var amount = pow(sin(abs(angle_to_mouse) / 2), rotation_factor)
 	amount *= sign(angle_to_mouse)
 	
 	var rotate_angle = amount * deg2rad(max_rotation_speed) * delta
 	
+	$Cursor.transform.origin = rotate_target
 	$Ship.rotate_y(rotate_angle)
 	$Ship.rotation.z = amount * deg2rad(max_bank_angle)
 
 func _get_rotate_target() -> Vector3:
 	if Globals.camera == null:
 		return Vector3()
-	return Globals.camera.get_world_global_mouse_pos() - global_transform.origin
+	
+	# No ide why the *2 is needed but if it works it works.
+	return Globals.camera.get_world_global_mouse_pos() - global_transform.origin * 2
 #	var mousepos = get_viewport().get_mouse_position()
 #	var camera = get_viewport().get_camera()
 #	var rayorigin = camera.project_ray_origin(mousepos)
