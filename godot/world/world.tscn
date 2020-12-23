@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://entities/ships/player/camera/camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/ships/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
-[ext_resource path="res://world/bodies/orbiting_body.gd" type="Script" id=4]
 
 [node name="World" type="Spatial"]
 
@@ -69,14 +68,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 24, 33 )
 light_energy = 2.72
 omni_range = 4096.0
 omni_attenuation = 0.00240458
-
-[node name="OrbitingBody" type="KinematicBody" parent="."]
-script = ExtResource( 4 )
-semimajor_axis = 20.0
-eccentricity = 0.266
-orbital_period = 10.0
-
-[node name="Sprite3D" type="Sprite3D" parent="OrbitingBody"]
-transform = Transform( 0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0 )
-pixel_size = 0.0759
-texture = ExtResource( 3 )
