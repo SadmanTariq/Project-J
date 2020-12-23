@@ -8,9 +8,11 @@ export(float, 0, 0.99999) var eccentricity
 export(float) var orbital_period
 export(float, -180, 180) var inclination_degrees
 export(float, 0, 360) var mean_anomaly_degrees
+export(float, 0, 360) var argument_of_periapsis_degrees
 
 onready var mean_anomaly = deg2rad(mean_anomaly_degrees)
 onready var inclination = deg2rad(inclination_degrees)
+onready var argument_of_periapsis = deg2rad(argument_of_periapsis_degrees)
 onready var parent: Spatial = get_node("..")
 
 
@@ -33,14 +35,20 @@ func _get_coords(M) -> Vector3:
 	var E = _get_eccentric_anomaly(M)
 	var P = semimajor_axis * (cos(E) - e)
 	var Q = semimajor_axis * sin(E) * sqrt(1 - pow(e, 2))
-	return Vector3(P, 0, Q)
-	#// rotate by argument of periapsis
-	#var x = Math.cos(w) * P - Math.sin(w) * Q;
-	#var y = Math.sin(w) * P + Math.cos(w) * Q;
-	#// rotate by inclination
-	#var z = Math.sin(i) * y;
-	#    y = Math.cos(i) * y;
-	#// rotate by longitude of ascending node
+#	return Vector3(P, 0, Q)
+	var coords = Vector3()
+	
+	# rotate by argument of periapsis
+	coords.x = cos(argument_of_periapsis) * P - sin(argument_of_periapsis) * Q
+	coords.y = sin(argument_of_periapsis) * P + cos(argument_of_periapsis) * Q
+	
+	# rotate by inclination
+	coords.z = sin(inclination) * coords.y
+	coords.y = cos(inclination) * coords.y
+	
+	return coords
+	
+	# rotate by longitude of ascending node
 	#var xtemp = x;
 	#x = Math.cos(W) * xtemp - Math.sin(W) * y;
 	#y = Math.sin(W) * xtemp + Math.cos(W) * y;
