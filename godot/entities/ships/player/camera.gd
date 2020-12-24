@@ -1,7 +1,7 @@
 extends Spatial
 
 
-export var zoom_level = 0.5 setget _set_zoom_level
+export var zoom_level = 0.7
 export var zoom_increment = 0.02
 export var min_distance = 20
 export var max_distance = 100

@@ -8,19 +8,23 @@ export var thrust = 150.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-#	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 func _physics_process(delta):
 #	translation.y = 0
 #	linear_velocity.y = 0
 	_rotate(delta)
-	
+#	_apply_weight(delta)
 	if Input.is_action_pressed("accelerate"):
-		_accelerate(delta)
-	
-#	print(global_transform.origin)
+		_apply_thrust(delta)
 
-func _accelerate(delta):
+func _apply_weight(delta):
+	var a = Vector3()
+	for m in get_tree().get_nodes_in_group("mass"):
+		a += m.get_acceleration(global_transform.origin)
+	a.y = 0
+	apply_central_impulse(a * mass * delta)
+
+func _apply_thrust(delta):
 	var resultant = -$Ship.transform.basis.z * thrust * delta
 	resultant.y = 0
 	apply_central_impulse(resultant)

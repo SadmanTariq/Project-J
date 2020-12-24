@@ -1,10 +1,8 @@
 class_name OrbitingBody
 extends KinematicBody
 
-const e = 0.577215665
-
 export(float) var semimajor_axis
-export(float, 0, 0.99999) var eccentricity
+export(float, 0, 1) var eccentricity
 export(float) var orbital_period
 export(float, -180, 180) var inclination_degrees
 export(float, 0, 360) var mean_anomaly_degrees
@@ -26,15 +24,15 @@ func _physics_process(delta):
 func _get_eccentric_anomaly(M):
 	var E = M
 	while true:
-		var dE = (E - e * sin(E) - M)/(1 - e * cos(E))
+		var dE = (E - eccentricity * sin(E) - M)/(1 - eccentricity * cos(E))
 		E -= dE
 		if abs(dE) < pow(10, -6):
 			return E
 
 func _get_coords(M) -> Vector3:
 	var E = _get_eccentric_anomaly(M)
-	var P = semimajor_axis * (cos(E) - e)
-	var Q = semimajor_axis * sin(E) * sqrt(1 - pow(e, 2))
+	var P = semimajor_axis * (cos(E) - eccentricity)
+	var Q = semimajor_axis * sin(E) * sqrt(1 - pow(eccentricity, 2))
 #	return Vector3(P, 0, Q)
 	var coords = Vector3()
 	

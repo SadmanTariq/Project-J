@@ -1,0 +1,33 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[ext_resource path="res://world/bodies/planets/planet.shader" type="Shader" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+period = 138.8
+persistence = 0.486
+
+[sub_resource type="NoiseTexture" id=2]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+octaves = 1
+period = 138.8
+
+[sub_resource type="NoiseTexture" id=4]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 3 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/ocean_color = Color( 0, 0.156863, 0.623529, 1 )
+shader_param/land_amount = 0.669
+shader_param/ground_bias = 0.411
+shader_param/ground_color1 = Color( 0.509804, 0.368627, 0.0352941, 1 )
+shader_param/ground_color2 = Color( 0, 0.796078, 0.0666667, 1 )
+shader_param/ocean_noise = SubResource( 4 )
+shader_param/ground_noise = SubResource( 2 )

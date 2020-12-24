@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Spatial",
+"class": "Mass",
+"language": "GDScript",
+"path": "res://world/bodies/mass.gd"
+}, {
 "base": "KinematicBody",
 "class": "OrbitingBody",
 "language": "GDScript",
 "path": "res://world/bodies/orbiting_body.gd"
 } ]
 _global_script_class_icons={
+"Mass": "",
 "OrbitingBody": ""
 }
 
@@ -27,6 +33,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://scripts/globals.gd"
+GameManager="*res://scripts/game_manager.gd"
 
 [input]
 

@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://world/bodies/32x16_smooth_uvsphere_mesh.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://world/bodies/star/star_spectrum.png" type="Texture" id=2]
+[ext_resource path="res://world/bodies/star/star.gd" type="Script" id=3]
+[ext_resource path="res://world/bodies/mass.gd" type="Script" id=4]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+//render_mode unshaded;
+
+uniform sampler2D colorSpectrum;
+uniform sampler2D granulesNoise;
+uniform float temperature;
+
+vec3 getTempColorShift(float temp) {
+    return vec3(temp * (0.0534 / 255.0) - (43.0 / 255.0),
+				temp * (0.0628 / 255.0) - (77.0 / 255.0),
+				temp * (0.0735 / 255.0) - (115.0 / 255.0));
+}
+
+void fragment() {
+	float total = texture(granulesNoise, UV).r;
+//	ALBEDO = getTempColorShift(total);
+	ALBEDO = texture(colorSpectrum,
+					 vec2((temperature - 800.0f) / 29200.0f, 0)).rgb * total;
+//	EMISSION = texture(colorSpectrum,
+//					 vec2((temperature - 800.0f) / 29200.0f, 0)).rgb * total;
+	EMISSION = vec3(max(total * 10., 0.));
+//	EMISSION *= 100.;
+}
+
+"
+
+[sub_resource type="OpenSimplexNoise" id=2]
+octaves = 5
+period = 2.5
+lacunarity = 4.0
+
+[sub_resource type="NoiseTexture" id=3]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/temperature = 2000.0
+shader_param/colorSpectrum = ExtResource( 2 )
+shader_param/granulesNoise = SubResource( 3 )
+
+[node name="Star" type="Area"]
+script = ExtResource( 3 )
+
+[node name="Mesh" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="Mass" type="Spatial" parent="."]
+script = ExtResource( 4 )
