@@ -12,11 +12,14 @@ func get_world_global_mouse_pos() -> Vector3:
 	var rayorigin = $Camera.project_ray_origin(mousepos)
 	var mouseray = $Camera.project_ray_normal(mousepos)
 	var pos = rayorigin + (-rayorigin.y / mouseray.y) * mouseray
-	return pos + global_transform.origin
+	return pos# + global_transform.origin
 
 
 func _ready():
 	Globals.camera = self
+
+func _process(_delta):
+	$Camera/Cursor.global_transform.origin = get_world_global_mouse_pos()
 
 func _input(event):
 	if event is InputEventMouseButton:

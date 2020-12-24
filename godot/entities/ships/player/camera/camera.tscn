@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://entities/ships/player/camera.gd" type="Script" id=1]
+[ext_resource path="res://entities/ships/player/cursor.png" type="Texture" id=2]
 
 [node name="Camera" type="Spatial"]
 transform = Transform( 0.707107, -0.612373, 0.353553, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0, 0, 0 )
 script = ExtResource( 1 )
-zoom_level = 0.7
 zoom_increment = 0.1
 max_distance = 150
 
@@ -13,3 +13,8 @@ max_distance = 150
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60 )
 current = true
 far = 500.0
+
+[node name="Cursor" type="Sprite3D" parent="Camera"]
+transform = Transform( 0.707107, -0.707107, -2.59053e-07, 0.612373, 0.612372, 0.5, -0.353554, -0.353553, 0.866025, 0, -9.53674e-06, -60 )
+pixel_size = 0.1
+texture = ExtResource( 2 )

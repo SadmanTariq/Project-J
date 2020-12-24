@@ -26,12 +26,12 @@ func _apply_weight(delta):
 	apply_central_impulse(a * mass * delta)
 
 func _apply_thrust(delta):
-	var resultant = -$Ship.transform.basis.z * thrust * delta
+	var resultant = -transform.basis.z * thrust * delta
 	resultant.y = 0
 	apply_central_impulse(resultant)
 
 func _rotate(delta):
-	var forward: Vector3 = -$Ship.transform.basis.z
+	var forward: Vector3 = -transform.basis.z
 	
 	var rotate_target = _get_rotate_target()
 	
@@ -41,21 +41,13 @@ func _rotate(delta):
 	var amount = pow(sin(abs(angle_to_mouse) / 2), rotation_factor)
 	amount *= sign(angle_to_mouse)
 	
-	var rotate_angle = amount * deg2rad(max_rotation_speed) * delta
-	
-	$Cursor.transform.origin = rotate_target
-	$Ship.rotate_y(rotate_angle)
+#	var rotate_angle = amount * deg2rad(max_rotation_speed) * delta
+#	rotate_y(rotate_angle)
+
+	angular_velocity.y = amount * deg2rad(max_rotation_speed)
 	$Ship.rotation.z = amount * deg2rad(max_bank_angle)
 
 func _get_rotate_target() -> Vector3:
 	if Globals.camera == null:
 		return Vector3()
-	
-	# No ide why the *2 is needed but if it works it works.
-	return Globals.camera.get_world_global_mouse_pos() - global_transform.origin * 2
-#	var mousepos = get_viewport().get_mouse_position()
-#	var camera = get_viewport().get_camera()
-#	var rayorigin = camera.project_ray_origin(mousepos)
-#	var mouseray = camera.project_ray_normal(mousepos)
-#	var pos = rayorigin + (-rayorigin.y / mouseray.y) * mouseray
-#	return pos
+	return Globals.camera.get_world_global_mouse_pos() - global_transform.origin
