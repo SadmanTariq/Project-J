@@ -16,5 +16,6 @@ far = 500.0
 
 [node name="Cursor" type="Sprite3D" parent="Camera"]
 transform = Transform( 0.707107, -0.707107, -2.59053e-07, 0.612373, 0.612372, 0.5, -0.353554, -0.353553, 0.866025, 0, -9.53674e-06, -60 )
+cast_shadow = 0
 pixel_size = 0.1
 texture = ExtResource( 2 )
