@@ -21,10 +21,10 @@ func generate_system():
 	
 	for i in range(num_planets):
 		var planet = planet_scene.instance()
-		planet.semimajor_axis = star.radius * (10 + i * 1.5)
+		planet.semimajor_axis = star.radius * (10 + i * 3)
 		planet.eccentricity = clamp(rng.randfn(0.4, 0.2), 0.0, 0.7)
 		planet.inclination_degrees = [90, -90][rng.randi_range(0, 1)]
-		planet.orbital_period = 10
+#		planet.orbital_period = 10
 		planet.mean_anomaly = rng.randf_range(0, PI)
 		planet.get_node("Mesh").generate()
 		

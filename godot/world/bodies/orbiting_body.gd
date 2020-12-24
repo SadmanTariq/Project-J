@@ -7,6 +7,7 @@ export(float) var orbital_period
 export(float, -180, 180) var inclination_degrees
 export(float, 0, 360) var mean_anomaly_degrees
 export(float, 0, 360) var argument_of_periapsis_degrees
+export var period_from_parent = true
 
 onready var mean_anomaly = deg2rad(mean_anomaly_degrees)
 onready var inclination = deg2rad(inclination_degrees)
@@ -15,6 +16,8 @@ onready var parent: Spatial = get_node("..")
 
 
 func _ready():
+	if period_from_parent and parent.has_node("Mass"):
+		orbital_period = parent.get_node("Mass").get_orbital_period(semimajor_axis)
 	transform.origin = _get_coords(mean_anomaly)
 
 func _physics_process(delta):

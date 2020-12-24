@@ -10,6 +10,10 @@ var planet_material = preload("res://world/bodies/planets/material.tres")
 var material: ShaderMaterial
 var rng = RandomNumberGenerator.new()
 
+var radius: float
+var angular_velocity: float
+var rotation_axis: Vector3
+
 func generate():
 	rng.randomize()
 	
@@ -26,14 +30,15 @@ func generate():
 #		_generate()
 
 func _process(delta):
-	rotate_y(delta)
+	rotate_y(angular_velocity * delta)
 
 func _generate():
-	var size = clamp(rng.randfn(0.5, 0.2), 0, 1)
+	radius = clamp(rng.randfn(0.5, 0.2), 0, 1)
+	angular_velocity = rng.randf_range(0.2 * PI, PI) * [-1, 1][rng.randi_range(0, 1)]
 	
-	var new_scale = min_size + (max_size - min_size) * size
+	var new_scale = min_size + (max_size - min_size) * radius
 	transform = transform.scaled(Vector3(new_scale, new_scale, new_scale))
-	$Mass.mass = min_mass + (max_mass - min_mass) * size
+	get_node("../Mass").mass = min_mass + (max_mass - min_mass) * radius
 	
 	material.set_shader_param("ocean_color",
 							  Color.from_hsv(randf(), 1.0, randf()))
