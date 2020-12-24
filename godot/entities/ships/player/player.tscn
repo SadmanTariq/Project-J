@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://entities/ships/player/model/Spaceship.glb" type="PackedScene" id=1]
+[ext_resource path="res://entities/ships/player/model/player_ship.glb" type="PackedScene" id=1]
 [ext_resource path="res://entities/ships/player/player.gd" type="Script" id=2]
 [ext_resource path="res://entities/ships/player/cursor.png" type="Texture" id=3]
 [ext_resource path="res://ui/minimap/temp_map_indicator.png" type="Texture" id=4]
