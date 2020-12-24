@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+var target: Spatial
+var camera: Camera2D
+
+func _ready():
+	texture = target.texture
+	if target.main:
+		$RemoteTransform2D.remote_path = $RemoteTransform2D.get_path_to(camera)
+
+func _process(_delta):
+	position = target.position * get_parent().zoom_level
+	rotation = target.orientation
+	visible = target.show_on_map
+"
+
+[node name="MinimapIndicator" type="Sprite"]
+script = SubResource( 1 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+update_rotation = false
+update_scale = false

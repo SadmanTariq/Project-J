@@ -25,7 +25,7 @@ func generate_system():
 		planet.eccentricity = clamp(rng.randfn(0.4, 0.2), 0.0, 0.7)
 		planet.inclination_degrees = [90, -90][rng.randi_range(0, 1)]
 #		planet.orbital_period = 10
-		planet.mean_anomaly = rng.randf_range(0, PI)
+		planet.mean_anomaly_degrees = rng.randf_range(0, 360)
 		planet.get_node("Mesh").generate()
 		
 		star.add_child(planet)

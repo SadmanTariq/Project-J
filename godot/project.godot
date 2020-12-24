@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Project-J"
-run/main_scene="res://world/world.tscn"
+run/main_scene="res://main_scenes/main_scene.tscn"
 config/icon="res://icon.png"
 
 [autoload]

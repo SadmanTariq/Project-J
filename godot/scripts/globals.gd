@@ -2,6 +2,7 @@ extends Node
 
 var camera: Spatial
 var world: Spatial
+var minimap: Node2D
 
 
 func biased_randf(bias: float) -> float:

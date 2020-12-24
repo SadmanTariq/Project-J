@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/minimap/minimap.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[node name="Minimap" type="Node2D"]
+script = ExtResource( 1 )
+zoom_level = 0.1
+
+[node name="icon" type="Sprite" parent="."]
+visible = false
+position = Vector2( -0.616302, -3.8327 )
+texture = ExtResource( 2 )
+
+[node name="Camera" type="Camera2D" parent="."]
+rotation = -0.785398
+rotating = true
+current = true

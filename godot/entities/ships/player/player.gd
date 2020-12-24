@@ -10,6 +10,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _physics_process(delta):
+#	print($Ship.global_transform.basis.get_euler().y)
 #	translation.y = 0
 #	linear_velocity.y = 0
 	_rotate(delta)
