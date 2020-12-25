@@ -7,7 +7,9 @@
 [ext_resource path="res://ui/minimap/temp_map_indicator.png" type="Texture" id=5]
 [ext_resource path="res://ui/minimap/minimap_target.tscn" type="PackedScene" id=6]
 
-[node name="Planet" type="KinematicBody"]
+[node name="Planet" type="KinematicBody" groups=[
+"planet",
+]]
 script = ExtResource( 3 )
 
 [node name="Mesh" type="MeshInstance" parent="."]

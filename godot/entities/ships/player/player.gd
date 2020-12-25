@@ -18,6 +18,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("accelerate"):
 		_apply_thrust(delta)
 
+func _integrate_forces(state):
+	linear_velocity.y = 0
+	if translation.y > 0.5:
+		translation.y = 0
+
 func _apply_weight(delta):
 	var a = Vector3()
 	for m in get_tree().get_nodes_in_group("mass"):

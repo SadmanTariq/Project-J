@@ -14,6 +14,10 @@ onready var inclination = deg2rad(inclination_degrees)
 onready var argument_of_periapsis = deg2rad(argument_of_periapsis_degrees)
 onready var parent: Spatial = get_node("..")
 
+var radius: float setget , _get_radius
+func _get_radius():
+	return $Mesh.radius
+
 
 func _ready():
 	if period_from_parent and parent.has_node("Mass"):

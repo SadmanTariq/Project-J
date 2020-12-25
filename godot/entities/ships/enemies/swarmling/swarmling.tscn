@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://entities/ships/enemies/swarmling/model/swarmling_ship.glb" type="PackedScene" id=1]
+[ext_resource path="res://entities/ships/enemies/swarmling/swarmling.gd" type="Script" id=2]
+[ext_resource path="res://ui/minimap/minimap_target.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/minimap/temp_map_indicator.png" type="Texture" id=4]
+
+[node name="Swarmling" type="Spatial"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+swarm_group = "asdf"
+coherence = 0.051
+separation = 0.107
+separation_distance = 5.0
+alignment = 0.0
+engagement_range = 500.0
+stopping = 0.228
+stopping_range = 50.0
+
+[node name="Ship" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
+
+[node name="Cube" parent="Ship" index="0"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="MinimapTarget" parent="." instance=ExtResource( 3 )]
+texture = ExtResource( 4 )
+
+[editable path="Ship"]
