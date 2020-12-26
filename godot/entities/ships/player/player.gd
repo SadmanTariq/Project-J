@@ -20,10 +20,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed("shoot"):
 		$BulletShooter.fire(linear_velocity)
 
-func _integrate_forces(state):
-	linear_velocity.y = 0
-	if translation.y > 0.5:
-		translation.y = 0
+#func _integrate_forces(state):
+#	linear_velocity.y = 0
+#	if translation.y > 0.5:
+#		translation.y = 0
 
 func _apply_weight(delta):
 	var a = Vector3()
