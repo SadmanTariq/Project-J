@@ -11,9 +11,6 @@ extents = Vector3( 1.41173, 2.89041, 1.84659 )
 
 [node name="Swarmling" type="Spatial"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 swarm_group = "asdf"
 coherence = 0.051
 separation = 0.107

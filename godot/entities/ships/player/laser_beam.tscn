@@ -16,4 +16,3 @@ damage = 10.0
 
 [node name="CollisionShape" parent="Hitbox" index="0"]
 shape = SubResource( 1 )
-[connection signal="hit" from="Hitbox" to="." method="_on_Hitbox_hit"]

@@ -14,6 +14,9 @@ func get_world_global_mouse_pos() -> Vector3:
 	var pos = rayorigin + (-rayorigin.y / mouseray.y) * mouseray
 	return pos# + global_transform.origin
 
+func unproject_position(world_point: Vector3) -> Vector2:
+	return $Camera.unproject_position(world_point)
+
 
 func _ready():
 	Globals.camera = self
