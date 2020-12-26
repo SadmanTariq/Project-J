@@ -7,6 +7,7 @@ var target: Spatial
 var camera: Camera2D
 
 func _ready():
+	target.connect(\"tree_exiting\", self, \"queue_free\")
 	texture = target.texture
 	if target.main:
 		$RemoteTransform2D.remote_path = $RemoteTransform2D.get_path_to(camera)

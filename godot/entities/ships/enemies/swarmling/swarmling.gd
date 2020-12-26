@@ -86,3 +86,6 @@ func _avoid_planets():
 		var to_body: Vector3 = b.global_transform.origin-global_transform.origin
 		if to_body.length() <= min_planet_distance:
 			velocity += -to_body * planet_avoid
+
+func _on_Gibspawner_spawn_finished():
+	queue_free()
