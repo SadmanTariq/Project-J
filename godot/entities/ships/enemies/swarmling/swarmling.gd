@@ -10,6 +10,8 @@ export var engagement = 0.1
 export var engagement_range = 50.0
 export var stopping = 0.15
 export var stopping_range = 10.0
+export var planet_avoid = 1.0
+export var min_planet_distance = 50
 
 #var target: Spatial
 var velocity = Vector3()
@@ -23,6 +25,7 @@ func _physics_process(delta):
 	_match_velocity()
 	_to_target()
 	_stop()
+	_avoid_planets()
 	
 	velocity.y = 0
 	if velocity.length() > max_speed:
@@ -75,3 +78,11 @@ func _stop():
 		var to_target = global_transform.origin - t.global_transform.origin
 		if to_target.length() <= stopping_range:
 			velocity += to_target * stopping
+
+func _avoid_planets():
+	var bodies = get_tree().get_nodes_in_group("star")
+	bodies += get_tree().get_nodes_in_group("planet")
+	for b in bodies:
+		var to_body: Vector3 = b.global_transform.origin-global_transform.origin
+		if to_body.length() <= min_planet_distance:
+			velocity += -to_body * planet_avoid

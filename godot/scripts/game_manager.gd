@@ -8,9 +8,9 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize()
 
-func _input(event):
-	if event.is_action_pressed("shoot"):
-		spawn_system(Vector3())
+#func _input(event):
+#	if event.is_action_pressed("shoot"):
+#		spawn_system(Vector3())
 
 
 func generate_system():

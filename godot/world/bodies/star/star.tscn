@@ -51,7 +51,9 @@ shader_param/temperature = 2000.0
 shader_param/colorSpectrum = ExtResource( 2 )
 shader_param/granulesNoise = SubResource( 3 )
 
-[node name="Star" type="Area"]
+[node name="Star" type="Area" groups=[
+"star",
+]]
 script = ExtResource( 3 )
 
 [node name="Mesh" type="MeshInstance" parent="."]

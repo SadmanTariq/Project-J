@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area",
+"class": "Hitbox",
+"language": "GDScript",
+"path": "res://entities/combat/hitbox.gd"
+}, {
+"base": "Area",
+"class": "Hurtbox",
+"language": "GDScript",
+"path": "res://entities/combat/hurtbox.gd"
+}, {
 "base": "Spatial",
 "class": "Mass",
 "language": "GDScript",
@@ -20,6 +30,8 @@ _global_script_classes=[ {
 "path": "res://world/bodies/orbiting_body.gd"
 } ]
 _global_script_class_icons={
+"Hitbox": "",
+"Hurtbox": "",
 "Mass": "",
 "OrbitingBody": ""
 }

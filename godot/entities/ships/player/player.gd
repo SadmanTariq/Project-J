@@ -17,6 +17,8 @@ func _physics_process(delta):
 #	_apply_weight(delta)
 	if Input.is_action_pressed("accelerate"):
 		_apply_thrust(delta)
+	if Input.is_action_pressed("shoot"):
+		$BulletShooter.fire(linear_velocity)
 
 func _integrate_forces(state):
 	linear_velocity.y = 0
