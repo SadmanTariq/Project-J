@@ -3,6 +3,9 @@ extends Spatial
 export var show_on_map = true
 export var main = false
 export(Texture) var texture
+export var sprite_scale = 1.0
+export(ShaderMaterial) var material
+
 var position: Vector2 setget , _get_position
 var orientation: float setget , _get_orientation
 

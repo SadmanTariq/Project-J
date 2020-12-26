@@ -9,8 +9,12 @@ var camera: Camera2D
 func _ready():
 	target.connect(\"tree_exiting\", self, \"queue_free\")
 	texture = target.texture
+	material = target.material
+	transform = transform.scaled(Vector2(target.sprite_scale, target.sprite_scale))
+	
 	if target.main:
 		$RemoteTransform2D.remote_path = $RemoteTransform2D.get_path_to(camera)
+#		z_index += 1
 
 func _process(_delta):
 	position = target.position * get_parent().zoom_level

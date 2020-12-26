@@ -1,7 +1,7 @@
 extends Area
 
-const mean_size = 50.0
-const mean_mass = 62500.0
+const mean_size = 75.0
+const mean_mass = 93750.0
 const standard_deviation = 0.1
 
 var radius = 0.0

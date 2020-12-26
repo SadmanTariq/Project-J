@@ -1,11 +1,27 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://world/bodies/planets/planet.gd" type="Script" id=1]
 [ext_resource path="res://world/bodies/32x16_smooth_uvsphere_mesh.tres" type="ArrayMesh" id=2]
 [ext_resource path="res://world/bodies/orbiting_body.gd" type="Script" id=3]
 [ext_resource path="res://world/bodies/mass.gd" type="Script" id=4]
-[ext_resource path="res://ui/minimap/temp_map_indicator.png" type="Texture" id=5]
+[ext_resource path="res://world/bodies/planets/minimap_icon.png" type="Texture" id=5]
 [ext_resource path="res://ui/minimap/minimap_target.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color1: hint_color;
+uniform vec4 color2: hint_color;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	COLOR = mix(color1, color2, tex) * tex.a;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color1 = Color( 0.992157, 0.952941, 0.027451, 1 )
+shader_param/color2 = Color( 1, 0.0509804, 0.941176, 1 )
 
 [node name="Planet" type="KinematicBody" groups=[
 "planet",
@@ -24,3 +40,5 @@ script = ExtResource( 4 )
 
 [node name="MinimapTarget" parent="." instance=ExtResource( 6 )]
 texture = ExtResource( 5 )
+sprite_scale = 0.05
+material = SubResource( 2 )

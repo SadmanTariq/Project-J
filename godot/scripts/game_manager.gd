@@ -8,6 +8,11 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize()
 
+func _process(__):
+	if Globals.world != null:
+		spawn_system(Vector3())
+		set_process(false)
+
 #func _input(event):
 #	if event.is_action_pressed("shoot"):
 #		spawn_system(Vector3())
