@@ -18,8 +18,11 @@ var velocity = Vector3()
 
 func _ready():
 	add_to_group(swarm_group)
+	$BulletShooter.target = Globals.player
 
 func _physics_process(delta):
+	$BulletShooter.fire(velocity)
+	
 	_avoid_others()
 	_fly_towards_center()
 	_match_velocity()

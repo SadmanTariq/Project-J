@@ -7,6 +7,7 @@ export var thrust = 150.0
 #export var damping = 2
 
 func _ready():
+	Globals.player = self
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _physics_process(delta):
