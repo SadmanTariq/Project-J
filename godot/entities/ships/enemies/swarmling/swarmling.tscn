@@ -40,7 +40,7 @@ surfaces/1 = {
 "vertex_count": 1050
 }
 
-[sub_resource type="ArrayMesh" id=3]
+[sub_resource type="ArrayMesh" id=5]
 resource_name = "Cube001"
 surfaces/0 = {
 "aabb": AABB( -1.75296, -0.994409, -1.09174, 1.50573, 1.98882, 2.18347 ),
@@ -126,7 +126,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.562809 )
 shape = SubResource( 1 )
 
 [node name="Gibspawner" parent="." instance=ExtResource( 6 )]
-gibs = [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ]
+gibs = [ SubResource( 2 ), SubResource( 5 ), SubResource( 4 ) ]
 
 [node name="BulletShooter" parent="." instance=ExtResource( 10 )]
 bullet_scene = ExtResource( 9 )
