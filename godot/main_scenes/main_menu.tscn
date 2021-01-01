@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://main-menu/star_background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main-menu/buttons/button.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main-menu/buttons/play.gd" type="Script" id=3]
+[ext_resource path="res://main-menu/buttons/quit.gd" type="Script" id=4]
+[ext_resource path="res://ui/sound_effects/click.tscn" type="PackedScene" id=5]
 
 [node name="Spatial" type="Spatial"]
 
@@ -16,13 +18,32 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
+margin_top = -50.0
+margin_right = 60.0
+margin_bottom = 54.0
+custom_constants/separation = 20
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="play" parent="CanvasLayer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 1.0
+margin_right = 80.0
+margin_bottom = 41.0
 script = ExtResource( 3 )
+
+[node name="click" parent="CanvasLayer/VBoxContainer/play" instance=ExtResource( 5 )]
+
+[node name="quit" parent="CanvasLayer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 61.0
+margin_right = 80.0
+margin_bottom = 101.0
+text = "QUIT"
+script = ExtResource( 4 )
+
+[node name="click" parent="CanvasLayer/VBoxContainer/quit" instance=ExtResource( 5 )]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/play" to="CanvasLayer/VBoxContainer/play" method="_on_play_pressed"]
+[connection signal="finished" from="CanvasLayer/VBoxContainer/play/click" to="CanvasLayer/VBoxContainer/play" method="_on_click_finished"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/quit" to="CanvasLayer/VBoxContainer/quit" method="_on_quit_pressed"]
+[connection signal="finished" from="CanvasLayer/VBoxContainer/quit/click" to="CanvasLayer/VBoxContainer/quit" method="_on_click_finished"]
