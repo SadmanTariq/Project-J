@@ -1,6 +1,19 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/font/lemon_milk.tres" type="DynamicFont" id=1]
+[ext_resource path="res://main-menu/button_styles/hover.stylebox" type="StyleBox" id=2]
+[ext_resource path="res://main-menu/button_styles/pressed.stylebox" type="StyleBox" id=3]
+[ext_resource path="res://main-menu/button_styles/normal.stylebox" type="StyleBox" id=4]
 
 [node name="play" type="Button"]
-margin_right = 43.0
-margin_bottom = 20.0
+margin_right = 46.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 80, 40 )
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 1 )
 text = "PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
