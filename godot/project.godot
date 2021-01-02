@@ -44,8 +44,11 @@ config/icon="res://icon.png"
 
 [autoload]
 
+background_load="*res://ui/background_loader/background_load.tscn"
 Globals="*res://scripts/globals.gd"
 GameManager="*res://scripts/game_manager.gd"
+ResourceQueue="*res://scripts/resource_queue.gd"
+SceneChanger="*res://ui/scene_changer/SceneChanger.gd"
 
 [input]
 
